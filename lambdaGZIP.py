@@ -13,8 +13,8 @@ import shutil
 # make a gzip of the file
 
 #set bucket name manually for testing
-#bucketName = 'dev-med-bia-testbucket'
-bucketName = 'put_your_bucket_name_here'
+bucketName = 'your-bucket-name-here'
+
 
 logging.basicConfig()
 logger = logging.getLogger()
@@ -28,7 +28,6 @@ s3client = boto3.client('s3')
 #seems you can only make a backup of a file with a resource
 s3resource = boto3.resource('s3')
 
-#a regex to find the files I'm looking for
 regex = re.compile(r'^ghx/hadoop-upload/.*txt.zip$')
 
 
@@ -76,6 +75,7 @@ def backup_files_to_gzip(s3Objects):
             upload_gz_file(file)
             #return True here just to run against one file for testing.
             return True
+        
 
 
 def lambda_handler(event, context):
